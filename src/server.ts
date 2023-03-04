@@ -66,6 +66,7 @@ io.on('connection', (socket: ExtendedSocket) => {
 //   io.to('63e3c50d0daad40afb1bf054').emit('receiveMessage', { message: 'just testing out stuff' })
 // }, 10000)
 
+mongoose.set('strictQuery', false)
 mongoose
   .connect(String(process.env.MONGO_URI))
   .then(() => {
