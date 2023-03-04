@@ -10,7 +10,7 @@ phases:
   pre_build:
     commands:
       - echo Installing source NPM dependencies...
-      - yarn install --production
+      - yarn install
   build:
     commands:
       - echo Build started on `date`
@@ -18,13 +18,12 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
-      - chmod +x deploy.sh
-      - ./deploy.sh
 artifacts:
   files:
     - dist/**/*
     - package.json
     - node_modules/**/*
+    - .ebextensions/**/*
 
 cache:
   paths:
