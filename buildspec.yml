@@ -1,0 +1,32 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: latest
+    commands:
+      - npm install -g typescript
+      - npm install -g yarn
+  pre_build:
+    commands:
+      - echo Installing source NPM dependencies...
+      - yarn install --production
+  build:
+    commands:
+      - echo Build started on `date`
+      - yarn run build
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - chmod +x deploy.sh
+      - ./deploy.sh
+artifacts:
+  files:
+    - dist/**/*
+    - package.json
+    - node_modules/**/*
+
+cache:
+  paths:
+    - node_modules/**/*
+  key: v1
